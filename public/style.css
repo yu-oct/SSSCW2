@@ -1,0 +1,107 @@
+/* public/css/styles.css */
+.alert-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    max-width: 300px;
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+.upload-container {
+    display: fixed;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    /* 使容器占据整个视口高度 */
+}
+
+.max-w-7xl {
+    /* 添加适当的样式以限制最大宽度 */
+    max-width: 100%;
+}
+
+.bg-white {
+    /* 背景颜色 */
+    background-color: #fff;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.shadow-sm {
+    /* 添加适当的阴影样式 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sm\:rounded-lg {
+    /* 添加适当的圆角样式 */
+    border-radius: 0.375rem;
+    /* 6px */
+}
+
+.p-6 {
+    /* 添加适当的内边距 */
+    padding: 1.5rem;
+    /* 24px */
+}
+
+.text-gray-900 {
+    /* 文本颜色 */
+    color: #1a202c;
+}
+
+/* 标签样式 */
+.styled-label {
+    margin-right: 8px;
+}
+
+
+
+.styled-input {
+    border: 1px solid #891717;
+    padding: 8px;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* Add your existing styles */
+
+.styled-label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.styled-button {
+    background-color: #3490dc;
+    color: rgb(6, 0, 0)030;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.styled-button:hover {
+    background-color: #45a049;
+}
+
+.uploaded-file {
+    margin-top: 50px;
+    /* 调整文件显示位置与上传容器之间的间距 */
+}
+
+.file-thumbnail {
+    max-width: 20%;
+    /* 文件缩略图的最大宽度 */
+    height: auto;
+}
+
+.file-details {
+    color: rgb(6, 0, 0)030;
+}
