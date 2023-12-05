@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+// use App\User;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use App\Mail\Welcome;
+use App\Actions\Fortify\CreateNewUser;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Laravel\Fortify\Rules\Password;
 
 class RegisteredUserController extends Controller
 {
+    // Import RegistersUsers trait
+    // use RegistersUsers;
     /**
      * Display the registration view.
      */
@@ -23,7 +29,6 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
-
     /**
      * Handle an incoming registration request.
      *
@@ -46,7 +51,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        auth()->login($user);
 
         \Mail::to($user)->send(new Welcome($user));
 

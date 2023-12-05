@@ -12,12 +12,26 @@
     z-index: 9999;
 }
 
-.upload-container {
-    display: fixed;
-    justify-content: center;
-    align-items: center;
-    height: 50vh;
-    /* 使容器占据整个视口高度 */
+/* CSS样式 */
+/* styles.css */
+
+.container {
+    padding-top: 3rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.card {
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0.375rem;
+}
+
+.card-content {
+    padding: 1.5rem;
+    color: #333;
 }
 
 .max-w-7xl {
@@ -25,10 +39,10 @@
     max-width: 100%;
 }
 
-.bg-white {
-    /* 背景颜色 */
+/* .bg-white {
     background-color: #fff;
-}
+} 
+*/
 
 .overflow-hidden {
     overflow: hidden;
@@ -77,18 +91,21 @@
     margin-bottom: 8px;
 }
 
+
+
 .styled-button {
-    background-color: #3490dc;
-    color: rgb(6, 0, 0)030;
+    padding: 10px 15px;
+    color: #000000;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(223, 159, 209);
 }
 
 .styled-button:hover {
-    background-color: #45a049;
+    background-color: rgb(242, 231, 241);
 }
 
 .uploaded-file {

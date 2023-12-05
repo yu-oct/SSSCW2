@@ -16,11 +16,19 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                   <x-nav-link :href="route('uploadindex')" :active="request()->routeIs('uploadindex')">
-    {{ __('MyNotes') }}
-</x-nav-link>
+                   
+<x-nav-link :href="route('uploadindex')" :active="request()->routeIs('uploadindex')">
+                    @can('isAdmin', Auth::user())
+                        {{ __('All Notes') }}
+                    @else
+                        {{ __('My Notes') }}
+                    @endcan
+                </x-nav-link>
 <x-nav-link :href="route('uploadcreate')" :active="request()->routeIs('uploadcreate')">
     {{ __('UploadNote') }}
+</x-nav-link>
+<x-nav-link :href="route('feedback.store')" :active="request()->routeIs('feedback')">
+    {{ __('Give Feedback') }}
 </x-nav-link>
 
                 </div>

@@ -33,6 +33,8 @@ class UploadController extends Controller
 
         return view('uploads.uploadindex', compact('uploads'));
 }
+       
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,8 +43,6 @@ class UploadController extends Controller
      */
     public function uploadcreate()
     {
-        
-    
     return view('uploads.uploadcreate');
 }
     
@@ -55,41 +55,36 @@ class UploadController extends Controller
  
 
      public function uploadstore(Request $request)
-     {
-       
-         $validated = $request->validate([
-             'upload' => 'file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048', // 允许上传 PDF、Word、JPEG、JPG、PNG 类型的文件，最大大小为 2048KB
-         ]);
-     
-         if ($request->hasFile('upload') && $request->file('upload')->isValid()) {
-             $upload = new Upload;
-             $upload->user_id = auth()->id();
-             $upload->originalName = $request->file('upload')->getClientOriginalName();
-             $upload->path = $request->file('upload')->store('uploads');
-             $upload->mimeType = $request->file('upload')->getMimeType();
-             $upload->save();
-             // 处理文档文件
-             if (in_array($upload->mimeType, ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'])) {
-                 // 获取文档文件路径
-                 $documentPath = storage_path('app/' . $upload->path);  
-                 // 设置输出格式为 PNG 图像
-                 $outputImagePath = storage_path('app/' . $upload->path . '.png');    
-                 // 使用 unoconv 转换文档为图像
-                 exec("unoconv -f png -o " . storage_path('app/') . " " . $documentPath);    
-                 // 重命名生成的图像文件
-                 rename($outputImagePath . '.0', $outputImagePath);
-             }
-     
-             return view('uploads.uploadcreate', [
-                 'id' => $upload->id,
-                 'path' => $upload->path,
-                 'originalName' => $upload->originalName,
-                 'mimeType' => $upload->mimeType,
-             ]);
-         } else {
-             return redirect()->back();
-         }
-     }
+{
+    $validated = $request->validate([
+        'upload' => 'file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048',
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+    ]);
+
+    if ($request->hasFile('upload') && $request->file('upload')->isValid()) {
+        $upload = new Upload;
+        $upload->user_id = auth()->id();
+        $upload->title = $request->input('title');
+        $upload->description = $request->input('description');
+        $upload->originalName = $request->file('upload')->getClientOriginalName();
+        $upload->path = $request->file('upload')->store('uploads');
+        $upload->mimeType = $request->file('upload')->getMimeType();
+        $upload->save();
+        return view('uploads.uploadcreate', [
+            'id' => $upload->id,
+            'path' => $upload->path,
+            'originalName' => $upload->originalName,
+            'mimeType' => $upload->mimeType,
+            'title' => $upload -> title,
+            'description' => $upload -> description,
+            
+        ]);
+    } else {
+        return redirect()->back();
+    }
+}
+
     
     /**
      * Display the specified resource.
@@ -118,7 +113,10 @@ class UploadController extends Controller
             ['id'=>$upload->id,
             'path'=>$upload->path,
             'originalName'=>$upload->originalName,
-            'mimeType'=>$upload->mimeType]
+            'mimeType'=>$upload->mimeType,
+            'title'=>$upload->title,
+            'description'=>$upload->description,
+            ]
         );
     }
 
@@ -142,9 +140,12 @@ class UploadController extends Controller
     $upload->originalName = $request->file('upload')->getClientOriginalName();
     $upload->path = $request->file('upload')->store('uploads');
     $upload->mimeType = $request->file('upload')->getClientMimeType();
+    $upload->title = $request->file('upload')->store('uploads');
+    $upload->description = $request->file('upload')->store('uploads');
     $upload->save();
 
     return back();
+
 }
 
     /**

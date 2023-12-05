@@ -19,5 +19,15 @@ class UserController extends Controller
         return 'Cannot find user';
     }
 }
+public function index()
+    {
+        $users = User::all();
+
+        // 在这里添加您的代码...
+
+        return view('uploads.uploadindex', ['users' => $users]);
+    }
+
+
 
 }

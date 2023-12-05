@@ -27,6 +27,25 @@ function changeAgentContent(inputElementId) {
     document.getElementById("inputFileAgent").value = document.getElementById(inputElementId).value;
 }
 
-$(function () {
-    $("#sortable-list").sortable();
-});
+// $(function () {
+//     $("#sortable-list").sortable();
+// });
+// 假设这是你的提交按钮
+// var submitButton = document.getElementById('submit-button');
+// // 在按钮点击事件中显示弹窗，并在两秒后隐藏
+// submitButton.addEventListener('click', function () {
+//     // 你的提交逻辑...
+
+//     // 假设提交成功后，显示弹窗
+//     var successModal = document.getElementById('success-modal');
+//     successModal.classList.remove('hidden');
+
+//     // 两秒后隐藏弹窗
+//     setTimeout(function () {
+//         successModal.classList.add('hidden');
+//     }, 2000);
+// });
+function submitFeedback() {
+    // 在这里添加你的 JavaScript 逻辑，例如弹窗
+    alert('Feedback Submitted!');
+}

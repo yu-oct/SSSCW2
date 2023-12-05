@@ -18,6 +18,11 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    
+    public function feedback()
+{
+    return $this->hasMany(Feedback::class);
+}
 
     public function isAdmin()
     {
